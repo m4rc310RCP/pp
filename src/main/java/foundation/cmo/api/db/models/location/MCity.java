@@ -19,6 +19,6 @@ public class MCity extends MLocation{
 	private String name;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "ds_sigla", referencedColumnName = "ds_sigla")
+	@JoinColumn(name = "cd_uf", referencedColumnName = "ds_sigla")
 	private MState state;
 }
