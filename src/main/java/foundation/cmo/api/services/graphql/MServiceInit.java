@@ -56,6 +56,7 @@ public class MServiceInit {
 				MState state = new MState();
 				state.setId(dist.getLong("id"));
 				state.setName(dist.getString("nome"));
+				state.setAcronym(dist.getString("sigla"));
 				
 				city.setState(state);
 				// --------------------------------------------//
