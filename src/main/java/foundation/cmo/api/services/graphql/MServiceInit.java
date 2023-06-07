@@ -20,7 +20,7 @@ public class MServiceInit {
 
 	@Autowired
 	private MDistrictRepository districtRepository;
-	private long i ;
+	private long i;
 
 	@GraphQLQuery(name = "test_aplication")
 	public String testApplication() {
@@ -40,21 +40,32 @@ public class MServiceInit {
 				MDistrict dis = new MDistrict();
 				dis.setId(dist.getLong("id"));
 				dis.setName(dist.getString("nome"));
-				
+
+				// --------------------------------------------//
+				dist = dist.getJSONObject("municipio");
 				MCity city = new MCity();
-				
-				city.setId(dist.getJSONObject("municipio").getLong("id"));
-				city.setName(dist.getJSONObject("municipio").getString("nome"));
-				
+				city.setId(dist.getLong("id"));
+				city.setName(dist.getString("nome"));
+
 				dis.setCity(city);
+				// --------------------------------------------//
+				dist = dist.getJSONObject("microrregiao")
+						   .getJSONObject("mesorregiao")
+						   .getJSONObject("UF");
+
+				MState state = new MState();
+				state.setId(dist.getLong("id"));
+				state.setName(dist.getString("nome"));
 				
+				city.setState(state);
+				// --------------------------------------------//
+
 				districtRepository.save(dis);
-				
+
 				if ((i++) % 200 == 0) {
 					districtRepository.flush();
 				}
-				
-				
+
 //				dis.setCity(new MCity());
 //				dis.getCity().setState(new MState());
 			});

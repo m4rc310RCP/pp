@@ -12,4 +12,6 @@ import lombok.EqualsAndHashCode;
 public class MState extends MLocation{
 	@Column(name = "nm_estado")
 	private String name;
+	@Column(name = "ds_sigla")
+	private String acronym;
 }
