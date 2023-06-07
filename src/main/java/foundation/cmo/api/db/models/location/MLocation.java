@@ -12,7 +12,4 @@ public class MLocation {
 	@Id
 	@Column(name = "cd_ibge")
 	private Long id;
-	
-	@Column(name = "nm_distrito")
-	private String name;
 }
