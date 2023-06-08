@@ -33,8 +33,8 @@ public class MServiceLocation {
 	}
 	
 	@GraphQLQuery(name = "listar_municipios_estado")
-	public List<MCity> getState(@GraphQLArgument(name = "cd_uf") String acronym, Pageable pageable) {
-//		Pageable pageable = PageRequest.of(page, size);
+	public List<MCity> getState(@GraphQLArgument(name = "cd_uf") String acronym, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
 		return cityRepository.findAllByStateAcronym(acronym, pageable);
 	}
 	
