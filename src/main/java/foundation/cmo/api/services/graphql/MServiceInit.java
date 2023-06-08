@@ -11,6 +11,7 @@ import foundation.cmo.api.db.models.location.MCity;
 import foundation.cmo.api.db.models.location.MDistrict;
 import foundation.cmo.api.db.models.location.MState;
 import foundation.cmo.api.db.repositories.MDistrictRepository;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @Service
@@ -20,6 +21,11 @@ public class MServiceInit {
 	@Autowired
 	private MDistrictRepository districtRepository;
 	private long i;
+	
+	@GraphQLQuery(name = "test_aplication")
+	public String test() {
+		return "OK";
+	}
 
 //	@GraphQLQuery(name = "test_aplication")
 	public String testApplication() {
