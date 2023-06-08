@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 @Entity(name = "Estado")
 public class MState extends MLocation{
+	private static final long serialVersionUID = 1L;
 	@Column(name = "nm_estado")
 	private String name;
 	@Column(name = "ds_sigla")

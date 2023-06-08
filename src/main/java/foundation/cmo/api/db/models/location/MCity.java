@@ -15,6 +15,8 @@ import lombok.EqualsAndHashCode;
 @Entity(name = "Municipio")
 public class MCity extends MLocation{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "nm_municipio")
 	private String name;
 	
