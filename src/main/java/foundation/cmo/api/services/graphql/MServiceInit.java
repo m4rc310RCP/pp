@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import foundation.cmo.api.db.models.location.MCity;
@@ -11,21 +12,22 @@ import foundation.cmo.api.db.models.location.MDistrict;
 import foundation.cmo.api.db.models.location.MState;
 import foundation.cmo.api.db.repositories.MDistrictRepository;
 import io.leangen.graphql.annotations.GraphQLQuery;
+import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
-//@Service
-//@GraphQLApi
+@Service
+@GraphQLApi
 public class MServiceInit {
 
 	@Autowired
 	private MDistrictRepository districtRepository;
 	private long i;
 	
-	@GraphQLQuery(name = "test_aplication")
+	//@GraphQLQuery(name = "test_aplication")
 	public String test() {
 		return "OK";
 	}
 
-//	@GraphQLQuery(name = "test_aplication")
+	@GraphQLQuery(name = "test_aplication")
 	public String testApplication() {
 
 		String surl = "https://servicodados.ibge.gov.br/api/v1/localidades/distritos";
