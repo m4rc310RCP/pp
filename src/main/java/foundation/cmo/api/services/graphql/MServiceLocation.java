@@ -1,5 +1,6 @@
 package foundation.cmo.api.services.graphql;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,31 +23,36 @@ public class MServiceLocation {
 
 	@Autowired
 	private MDistrictRepository districtRepository;
-	
+
 	@Autowired
 	private MCityRepository cityRepository;
-	
-	
+
 	@GraphQLQuery(name = "listar_municipios_estado")
 	public List<MCity> getState(@GraphQLArgument(name = "cd_uf") String acronym) {
 		return cityRepository.findAllByStateAcronym(acronym);
 	}
-	
+
 	@GraphQLQuery(name = "listar_municipios_estado")
 	public List<MCity> getState(@GraphQLArgument(name = "cd_uf") String acronym, int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
 		return cityRepository.findAllByStateAcronym(acronym, pageable);
 	}
-	
+
 	@GraphQLQuery(name = "obter_municipio")
 	public MCity getCity(@GraphQLArgument(name = "cd_ibge") Long id) {
 		return cityRepository.findById(id).orElse(null);
 	}
-	
-	
+
 	@GraphQLQuery(name = "ls_distritos")
-	public List<MDistrict> getDistrictsFromCity(@GraphQLContext MCity city){
-		return districtRepository.findAllByCity(city);
+	public List<MDistrict> getDistrictsFromCity(@GraphQLContext MCity city) {
+		List<MDistrict> list = new ArrayList<>();
+		districtRepository.findAllByCity(city).forEach(district -> {
+			String sid = String.format("%d", district.getId());
+			if (!sid.endsWith("05")) {
+				list.add(district);
+			}
+		});
+		return list;
 	}
-	
+
 }
