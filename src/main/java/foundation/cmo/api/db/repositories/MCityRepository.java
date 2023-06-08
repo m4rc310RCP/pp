@@ -13,4 +13,6 @@ public interface MCityRepository extends JpaRepository<MCity, Long> {
 
 	List<MCity> findAllByStateAcronym(String acronym);
 	List<MCity> findAllByStateAcronym(String acronym, Pageable pageable);
+
+	List<MCity> findAllByNameContainingIgnoreCase(String name);
 }

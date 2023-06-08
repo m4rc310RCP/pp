@@ -42,7 +42,12 @@ public class MServiceLocation {
 	public MCity getCity(@GraphQLArgument(name = "cd_ibge") Long id) {
 		return cityRepository.findById(id).orElse(null);
 	}
-
+	
+	@GraphQLQuery(name = "pesquisa_municipios")
+	public List<MCity> getCities(@GraphQLArgument(name = "nm_municipio") String name){
+		return cityRepository.findAllByNameContainingIgnoreCase(name);
+	}
+	
 	@GraphQLQuery(name = "ls_distritos")
 	public List<MDistrict> getDistrictsFromCity(@GraphQLContext MCity city) {
 		List<MDistrict> list = new ArrayList<>();
@@ -54,5 +59,7 @@ public class MServiceLocation {
 		});
 		return list;
 	}
+	
+	
 
 }
