@@ -24,7 +24,7 @@ public class MServiceLocation {
 	
 	
 	@GraphQLQuery(name = "listar_municipios_estado")
-	public List<MCity> getState(@GraphQLArgument(name = "uf") MState state) {
-		return cityRepository.findAllByState(state);
+	public List<MCity> getState(@GraphQLArgument(name = "cd_uf") String acronym) {
+		return cityRepository.findAllByStateAcronym(acronym);
 	}
 }

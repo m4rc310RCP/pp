@@ -9,4 +9,6 @@ import foundation.cmo.api.db.models.location.MState;
 
 public interface MCityRepository extends JpaRepository<MCity, Long> {
 	List<MCity> findAllByState(MState state);
+
+	List<MCity> findAllByStateAcronym(String acronym);
 }
