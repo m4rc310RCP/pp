@@ -8,5 +8,5 @@ import foundation.cmo.api.db.models.location.MCity;
 import foundation.cmo.api.db.models.location.MState;
 
 public interface MCityRepository extends JpaRepository<MCity, Long> {
-	List<MCity> findAllByMState(MState state);
+	List<MCity> findAllByState(MState state);
 }
