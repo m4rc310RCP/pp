@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import foundation.cmo.api.db.models.location.MCity;
@@ -12,10 +11,9 @@ import foundation.cmo.api.db.models.location.MDistrict;
 import foundation.cmo.api.db.models.location.MState;
 import foundation.cmo.api.db.repositories.MDistrictRepository;
 import io.leangen.graphql.annotations.GraphQLQuery;
-import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
-@Service
-@GraphQLApi
+//@Service
+//@GraphQLApi
 public class MServiceInit {
 
 	@Autowired
