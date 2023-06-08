@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import io.leangen.graphql.annotations.GraphQLIgnore;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,9 +20,11 @@ public class MCity extends MLocation{
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "nm_municipio")
+	@GraphQLQuery(name = "nm_municipio")
 	private String name;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "cd_uf", referencedColumnName = "ds_sigla")
+	@GraphQLIgnore
 	private MState state;
 }
