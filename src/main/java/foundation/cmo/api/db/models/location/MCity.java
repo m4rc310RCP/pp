@@ -23,8 +23,8 @@ public class MCity extends MLocation{
 	@GraphQLQuery(name = "nm_municipio")
 	private String name;
 	
+	@GraphQLIgnore
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "cd_uf", referencedColumnName = "ds_sigla")
-	@GraphQLIgnore
 	private MState state;
 }

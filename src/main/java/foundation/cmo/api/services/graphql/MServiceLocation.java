@@ -37,6 +37,16 @@ public class MServiceLocation {
 		Pageable pageable = PageRequest.of(page, size);
 		return cityRepository.findAllByStateAcronym(acronym, pageable);
 	}
+	
+	
+	@GraphQLQuery(name = "cd_uf")
+	public String getStateAcronym(@GraphQLContext MCity city) {
+		try {
+			return city.getState().getAcronym();
+		} catch (Exception e) {
+			return "";
+		}
+	}
 
 	@GraphQLQuery(name = "obter_municipio")
 	public MCity getCity(@GraphQLArgument(name = "cd_ibge") Long id) {
