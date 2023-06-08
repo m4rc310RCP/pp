@@ -3,6 +3,8 @@ package foundation.cmo.api.services.graphql;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import foundation.cmo.api.db.models.location.MCity;
@@ -28,6 +30,12 @@ public class MServiceLocation {
 	@GraphQLQuery(name = "listar_municipios_estado")
 	public List<MCity> getState(@GraphQLArgument(name = "cd_uf") String acronym) {
 		return cityRepository.findAllByStateAcronym(acronym);
+	}
+	
+	@GraphQLQuery(name = "listar_municipios_estado")
+	public List<MCity> getState(@GraphQLArgument(name = "cd_uf") String acronym, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		return cityRepository.findAllByStateAcronym(acronym, pageable);
 	}
 	
 	@GraphQLQuery(name = "obter_municipio")
