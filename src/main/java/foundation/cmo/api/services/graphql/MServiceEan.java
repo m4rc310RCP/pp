@@ -31,7 +31,7 @@ public class MServiceEan {
 		ResponseEntity<String> response = restTemplate.getForEntity(apiEndPoint, String.class);
 		if (response.getStatusCode().is2xxSuccessful()) {
 			JSONObject obj = new JSONObject(response.getBody());
-			obj = obj.getJSONObject("response");
+//			obj = obj.getJSONObject("response");
 			if (obj.has("message")) {
 				throw new UnsupportedOperationException(obj.getString("message"));
 			}
