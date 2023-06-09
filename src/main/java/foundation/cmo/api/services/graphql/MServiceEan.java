@@ -32,11 +32,11 @@ public class MServiceEan {
 		if (response.getStatusCode().is2xxSuccessful()) {
 			JSONObject obj = new JSONObject(response.getBody());
 //			obj = obj.getJSONObject("response");
-			if (obj.has("message")) {
-				throw new UnsupportedOperationException(obj.getString("message"));
-			}
-			
-			obj = obj.getJSONObject("superapi").getJSONObject("return").getJSONObject("Produto");
+//			if (obj.has("message")) {
+//				throw new UnsupportedOperationException(obj.getString("message"));
+//			}
+//			
+//			obj = obj.getJSONObject("superapi").getJSONObject("return").getJSONObject("Produto");
 			
 			return obj.toString();
 		}
