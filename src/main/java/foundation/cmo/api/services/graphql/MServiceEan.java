@@ -1,5 +1,6 @@
 package foundation.cmo.api.services.graphql;
 
+import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -29,9 +30,15 @@ public class MServiceEan {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<String> response = restTemplate.getForEntity(apiEndPoint, String.class);
 		if (response.getStatusCode().is2xxSuccessful()) {
-			String responseBody = response.getBody();
+			JSONObject obj = new JSONObject(response.getBody());
+			obj = obj.getJSONObject("response");
+			if (obj.has("message")) {
+				throw new UnsupportedOperationException(obj.getString("message"));
+			}
 			
-			return responseBody;
+			obj = obj.getJSONObject("superapi").getJSONObject("return").getJSONObject("Produto");
+			
+			return obj.toString();
 		}
 		return "";
 	}
