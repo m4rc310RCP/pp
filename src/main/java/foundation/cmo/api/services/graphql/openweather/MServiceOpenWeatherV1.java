@@ -4,13 +4,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import foundation.cmo.api.services.MConsts;
 import foundation.cmo.api.services.MService;

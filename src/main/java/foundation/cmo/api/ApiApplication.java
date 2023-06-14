@@ -1,6 +1,9 @@
 package foundation.cmo.api;
 
+import java.text.MessageFormat;
+import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +16,9 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import io.leangen.graphql.metadata.messages.MessageBundle;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling
@@ -50,5 +55,11 @@ public class ApiApplication {
 		messageSource.setBasenames("messages/message");
 //		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
+	}
+
+	@Bean
+	public void init() {
+	    TimeZone.setDefault(TimeZone.getTimeZone("GMT-3"));
+	    log.info(MessageFormat.format("Set TimeZone: {0}", new Date()));
 	}
 }
